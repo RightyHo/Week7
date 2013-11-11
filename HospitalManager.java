@@ -35,7 +35,7 @@ public class HospitalManager{
 		System.out.println("Number of patients: " + rListLength(patientListStart));
 		System.out.println("Iterative calc of total patients: " + iListLength(patientListStart));
 		//delete a couple of patients
-		patientListStart.deletePatient(eleventhPatient);
+		patientListStart.deletePatient(seventhPatient);
 		patientListStart.deletePatient(thirdPatient);
 		printDetails(p2print);
 		System.out.println("Number of patients: " + rListLength(patientListStart));
@@ -46,6 +46,14 @@ public class HospitalManager{
 		printDetails(p2print);
 		System.out.println("Number of patients: " + rListLength(patientListStart));
 		System.out.println("Iterative calc of total patients: " + iListLength(patientListStart));
+		//question 5
+		Patient traversePrint = null;
+		traversePrint = patientListStart;
+		printDetails(traversePrint);
+		do {
+			traversePrint = traversePrint.nextPatient;
+		} while(traversePrint.nextPatient != null);
+		reversePrint(traversePrint);
 	}
 	public void printDetails(Patient patientToPrint){
 		if(patientToPrint == null){
@@ -78,5 +86,12 @@ public class HospitalManager{
 		}
 		return count;
 	}
-
+	public void reversePrint(Patient patientToPrint){
+			if(patientToPrint == null){
+							return;
+			} else {
+				patientToPrint.printPatient();
+				reversePrint(patientToPrint.prevPatient);
+			}
+	}
 }
